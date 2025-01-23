@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Avocado {
     public static void main(String[] args) {
         String logo = "     _             \n"
@@ -11,7 +13,23 @@ public class Avocado {
         System.out.println("Hello! I'm Avocado");
         System.out.println("What can I do for you?");
         System.out.println("____________________________________________________________");
-        System.out.println("Bye. Hope to see you again soon!");
-        System.out.println("____________________________________________________________");
+
+        Scanner scanner = new Scanner(System.in);
+        String input;
+
+        while (true) {
+            input = scanner.nextLine(); // Read user input
+            if (input.equalsIgnoreCase("bye")) { // Check for exit condition
+                System.out.println("____________________________________________________________");
+                System.out.println("Bye. Hope to see you again soon!");
+                System.out.println("____________________________________________________________");
+                break; // Exit loop
+            }
+            System.out.println("____________________________________________________________");
+            System.out.println("Ok i will now " + input + " like an avocado!"); // Echo user input
+            System.out.println("____________________________________________________________");
+        }
+
+        scanner.close(); // Close the scanner to avoid resource leaks
     }
 }
