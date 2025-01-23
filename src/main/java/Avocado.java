@@ -1,16 +1,17 @@
 import java.util.Scanner;
 
 public class Avocado {
-    private static final int MAX_TASKS = 100; // Limit 
-    private static Task[] tasks = new Task[MAX_TASKS]; 
-    private static int taskCount = 0; 
+    private static final int MAX_TASKS = 100; // Limit of tasks
+    private static Task[] tasks = new Task[MAX_TASKS]; // Storage for tasks
+    private static int taskCount = 0; // Track the number of tasks
+
     public static void main(String[] args) {
         String logo = "     _             \n"
                     + "    / \\__    ____ \n"
                     + "   / _ \\ \\  / /  \\ \n"
                     + "  / ___ \\ \\/ / |  |\n"
                     + " /_/   \\_\\__/\\___/ \n";
-            
+
         System.out.println("____________________________________________________________");
         System.out.println("Hello from\n" + logo);
         System.out.println("Hello! I'm Avocado");
@@ -32,23 +33,67 @@ public class Avocado {
                 markTaskAsDone(input);
             } else if (input.startsWith("unmark ")) {
                 unmarkTask(input);
+            } else if (input.startsWith("todo ")) {
+                addTodo(input.substring(5));
+            } else if (input.startsWith("deadline ")) {
+                addDeadline(input.substring(9));
+            } else if (input.startsWith("event ")) {
+                addEvent(input.substring(6));
             } else {
-                addTask(input);
+                System.out.println("____________________________________________________________");
+                System.out.println(" I'm sorry, I don't recognize that command.");
+                System.out.println("____________________________________________________________");
             }
         }
         scanner.close();
     }
 
-    private static void addTask(String taskDescription) {
+    private static void addTodo(String description) {
         if (taskCount < MAX_TASKS) {
-            tasks[taskCount] = new Task(taskDescription);
+            tasks[taskCount] = new Todo(description);
             taskCount++;
             System.out.println("____________________________________________________________");
-            System.out.println(" added: " + taskDescription);
+            System.out.println(" Got it. I've added this task:");
+            System.out.println("   " + tasks[taskCount - 1]);
+            System.out.println(" Now you have " + taskCount + " tasks in the list.");
             System.out.println("____________________________________________________________");
-        } else {
+        }
+    }
+
+    private static void addDeadline(String input) {
+        String[] parts = input.split(" /by ", 2);
+        if (parts.length < 2) {
             System.out.println("____________________________________________________________");
-            System.out.println(" Sorry, you have reached the task limit!");
+            System.out.println(" Invalid format! Use: deadline <task> /by <date>");
+            System.out.println("____________________________________________________________");
+            return;
+        }
+        if (taskCount < MAX_TASKS) {
+            tasks[taskCount] = new Deadline(parts[0], parts[1]);
+            taskCount++;
+            System.out.println("____________________________________________________________");
+            System.out.println(" Got it. I've added this task:");
+            System.out.println("   " + tasks[taskCount - 1]);
+            System.out.println(" Now you have " + taskCount + " tasks in the list.");
+            System.out.println("____________________________________________________________");
+        }
+    }
+
+    private static void addEvent(String input) {
+        String[] parts = input.split(" /from | /to ", 3);
+        if (parts.length < 3) {
+            System.out.println("____________________________________________________________");
+            System.out.println(" Invalid format! Use: event <task> /from <start> /to <end>");
+            System.out.println("____________________________________________________________");
+            return;
+        }
+        if (taskCount < MAX_TASKS) {
+            tasks[taskCount] = new Event(parts[0], parts[1], parts[2]);
+            taskCount++;
+            System.out.println("____________________________________________________________");
+            System.out.println(" Got it. I've added this task:");
+            System.out.println("   " + tasks[taskCount - 1]);
+            System.out.println(" Now you have " + taskCount + " tasks in the list.");
             System.out.println("____________________________________________________________");
         }
     }
@@ -69,42 +114,26 @@ public class Avocado {
     private static void markTaskAsDone(String input) {
         try {
             int taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
-            if (taskIndex >= 0 && taskIndex < taskCount) {
-                tasks[taskIndex].markAsDone();
-                System.out.println("____________________________________________________________");
-                System.out.println(" Nice! I've marked this task as done:");
-                System.out.println("   " + tasks[taskIndex]);
-                System.out.println("____________________________________________________________");
-            } else {
-                System.out.println("____________________________________________________________");
-                System.out.println(" Task number out of range.");
-                System.out.println("____________________________________________________________");
-            }
+            tasks[taskIndex].markAsDone();
+            System.out.println("____________________________________________________________");
+            System.out.println(" Nice! I've marked this task as done:");
+            System.out.println("   " + tasks[taskIndex]);
+            System.out.println("____________________________________________________________");
         } catch (Exception e) {
-            System.out.println("____________________________________________________________");
-            System.out.println(" Invalid command. Use: mark <task number>");
-            System.out.println("____________________________________________________________");
+            System.out.println(" Invalid task number.");
         }
     }
 
     private static void unmarkTask(String input) {
         try {
             int taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
-            if (taskIndex >= 0 && taskIndex < taskCount) {
-                tasks[taskIndex].markAsNotDone();
-                System.out.println("____________________________________________________________");
-                System.out.println(" OK, I've marked this task as not done yet:");
-                System.out.println("   " + tasks[taskIndex]);
-                System.out.println("____________________________________________________________");
-            } else {
-                System.out.println("____________________________________________________________");
-                System.out.println(" Task number out of range.");
-                System.out.println("____________________________________________________________");
-            }
+            tasks[taskIndex].markAsNotDone();
+            System.out.println("____________________________________________________________");
+            System.out.println(" OK, I've marked this task as not done yet:");
+            System.out.println("   " + tasks[taskIndex]);
+            System.out.println("____________________________________________________________");
         } catch (Exception e) {
-            System.out.println("____________________________________________________________");
-            System.out.println(" Invalid command. Use: unmark <task number>");
-            System.out.println("____________________________________________________________");
+            System.out.println(" Invalid task number.");
         }
     }
 }
