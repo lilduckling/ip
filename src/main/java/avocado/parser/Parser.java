@@ -43,7 +43,7 @@ public class Parser {
                 throw new AvocadoException("Oops! Date format should be: yyyy-MM-dd HHmm");
             }
         } else {
-            return new InvalidCommand();
+            throw new AvocadoException("Oops! I don't understand this command.");
         }
     }
 }

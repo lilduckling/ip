@@ -14,7 +14,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws AvocadoException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.addTask(task);
         storage.saveTasks(tasks.getTasks());
         ui.showTaskAdded(task, tasks);

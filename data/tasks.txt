@@ -1,4 +1,1 @@
-T | 1 | eat
-T | 1 | sleep
-D | 0 | study | 2025-10-10
-T | 0 | cry
+T | 0 | Finish assignment
