@@ -35,10 +35,22 @@ application {
 tasks.named('test') {
     useJUnitPlatform()
 }
+jar {
+    manifest {
+        attributes(
+            'Main-Class': application.mainClass.get()
+        )
+    }
+}
 
 shadowJar {
-    archiveBaseName = "duke"
-    archiveClassifier = null
+    archiveBaseName.set("avocado")
+    archiveClassifier.set("")  // Removes the "-all" suffix from the filename
+    archiveVersion.set("1.0.0")
+
+    manifest {
+        attributes 'Main-Class': application.mainClass.get()
+    }
 }
 
 run{
