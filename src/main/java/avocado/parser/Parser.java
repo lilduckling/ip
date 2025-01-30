@@ -4,7 +4,17 @@ import avocado.command.*;
 import avocado.exception.AvocadoException;
 import avocado.task.*;
 
+/**
+ * Represents a parser to parse the user input.
+ */
 public class Parser {
+    /**
+     * Parses the user input and returns the corresponding command.
+     *
+     * @param fullCommand The full command entered by the user.
+     * @return The corresponding command.
+     * @throws AvocadoException If an error occurs during the parsing of the command.
+     */
     public static Command parse(String fullCommand) throws AvocadoException {
         if (fullCommand.equalsIgnoreCase("bye")) {
             return new ExitCommand();
