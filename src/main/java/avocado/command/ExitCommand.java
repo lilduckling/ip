@@ -7,7 +7,7 @@ import avocado.ui.Ui;
 
 public class ExitCommand extends Command {
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws AvocadoException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
         ui.showGoodbye();
     }
 
