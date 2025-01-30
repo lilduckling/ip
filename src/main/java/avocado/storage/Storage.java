@@ -1,3 +1,9 @@
+package avocado.storage;
+
+import avocado.task.Deadline;
+import avocado.task.Event;
+import avocado.task.Task;
+import avocado.task.Todo;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -57,13 +63,13 @@ public class Storage {
 
     private static String taskToFileFormat(Task task) {
         if (task instanceof Todo) {
-            return "T | " + (task.isDone ? "1" : "0") + " | " + task.description;
+            return "T | " + (task.isDone() ? "1" : "0") + " | " + task.getDescription();
         } else if (task instanceof Deadline) {
             Deadline d = (Deadline) task;
-            return "D | " + (d.isDone ? "1" : "0") + " | " + d.description + " | " + d.getBy();
+            return "D | " + (d.isDone() ? "1" : "0") + " | " + d.getDescription() + " | " + d.getBy();
         } else if (task instanceof Event) {
             Event e = (Event) task;
-            return "E | " + (e.isDone ? "1" : "0") + " | " + e.description + " | " + e.getFrom() + " | " + e.getTo();
+            return "E | " + (e.isDone() ? "1" : "0") + " | " + e.getDescription() + " | " + e.getFrom() + " | " + e.getTo();
         }
         return "";
     }

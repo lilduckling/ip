@@ -1,3 +1,7 @@
+package avocado.ui;
+
+import avocado.task.Task;
+import avocado.task.TaskList;
 import java.util.Scanner;
 
 public class Ui {

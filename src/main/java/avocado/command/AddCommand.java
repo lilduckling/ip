@@ -1,3 +1,11 @@
+package avocado.command;
+
+import avocado.exception.AvocadoException;
+import avocado.storage.Storage;
+import avocado.task.Task;
+import avocado.task.TaskList;
+import avocado.ui.Ui;
+
 public class AddCommand extends Command {
     private final Task task;
 

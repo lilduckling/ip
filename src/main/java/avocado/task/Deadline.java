@@ -1,8 +1,10 @@
+package avocado.task;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 
-class Deadline extends Task {
+public class Deadline extends Task {
     protected LocalDate by;
 
     public Deadline(String description, String by) {

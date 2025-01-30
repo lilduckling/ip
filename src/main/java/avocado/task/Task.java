@@ -1,10 +1,20 @@
+package avocado.task;
+
 public class Task {
-    protected String description;
-    protected boolean isDone;
+    protected  String description;
+    protected  boolean isDone;
 
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public boolean isDone() {
+        return isDone;
     }
 
     public String getStatusIcon() {

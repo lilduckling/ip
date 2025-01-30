@@ -1,3 +1,10 @@
+package avocado.command;
+
+import avocado.exception.AvocadoException;
+import avocado.storage.Storage;
+import avocado.task.TaskList;
+import avocado.ui.Ui;
+
 public class MarkCommand extends Command {
     private final int taskNumber;
 
