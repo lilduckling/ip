@@ -5,9 +5,12 @@ import avocado.storage.Storage;
 import avocado.task.TaskList;
 import avocado.ui.Ui;
 
+<<<<<<< HEAD
 /**
  * Represents the list command to be executed by the user.
  */
+=======
+>>>>>>> branch-A-CodingStandard
 public class ListCommand extends Command {
     /**
      * Executes the list command.
@@ -21,5 +24,4 @@ public class ListCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws AvocadoException {
         tasks.printTaskList();
     }
-    
 }
