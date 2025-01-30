@@ -1,3 +1,8 @@
+package avocado.parser;
+
+import avocado.command.*;
+import avocado.exception.AvocadoException;
+import avocado.task.*;
 
 public class Parser {
     public static Command parse(String fullCommand) throws AvocadoException {
