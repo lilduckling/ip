@@ -5,6 +5,7 @@ plugins {
 }
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 
@@ -28,7 +29,11 @@ test {
 }
 
 application {
-    mainClass.set("seedu.duke.Duke")
+    mainClass.set("avocado.Avocado")
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
 }
 
 shadowJar {
