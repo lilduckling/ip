@@ -5,6 +5,16 @@ import java.util.Scanner;
 public class Storage {
     private static final String FILE_PATH = "./data/tasks.txt";
 
+    private String filePath;
+
+    public Storage() {
+        this.filePath = FILE_PATH;
+    }
+
+    public Storage(String filePath) {
+        this.filePath = filePath;
+    }
+
     public static void saveTasks(ArrayList<Task> tasks) {
         try {
             File file = new File(FILE_PATH);

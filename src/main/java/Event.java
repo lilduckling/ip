@@ -13,11 +13,11 @@ class Event extends Task {
     }
 
     public String getFrom() {
-        return from.format(DateTimeFormatter.ofPattern("MMM d yyyy HHmm"));
+        return from.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
     }
 
     public String getTo() {
-        return to.format(DateTimeFormatter.ofPattern("MMM d yyyy HHmm"));
+        return to.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
     }  
 
     @Override
