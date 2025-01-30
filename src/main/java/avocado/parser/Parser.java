@@ -26,6 +26,8 @@ public class Parser {
             return new UnmarkCommand(Integer.parseInt(fullCommand.split(" ")[1]) - 1);
         } else if (fullCommand.startsWith("delete ")) {
             return new DeleteCommand(Integer.parseInt(fullCommand.split(" ")[1]) - 1);
+        } else if (fullCommand.startsWith("find ")) {
+            return new FindCommand(fullCommand.substring(5).trim());
         } else if (fullCommand.startsWith("todo ")) {
             String description = fullCommand.substring(5).trim();
             if (description.isEmpty()) {
