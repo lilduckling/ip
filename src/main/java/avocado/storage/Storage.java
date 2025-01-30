@@ -8,19 +8,35 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Represents the storage of tasks in the hard disk.
+ */
 public class Storage {
     private static final String FILE_PATH = "./data/tasks.txt";
 
     private String filePath;
 
+    /**
+     * Constructs a Storage object with the default file path.
+     */
     public Storage() {
         this.filePath = FILE_PATH;
     }
 
+    /**
+     * Constructs a Storage object with the specified file path.
+     *
+     * @param filePath The file path to store tasks.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Saves the tasks to the file.
+     *
+     * @param tasks The list of tasks to save.
+     */
     public static void saveTasks(ArrayList<Task> tasks) {
         try {
             File file = new File(FILE_PATH);
@@ -36,6 +52,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads the tasks from the file.
+     *
+     * @return The list of tasks loaded from the file.
+     */
     public static ArrayList<Task> loadTasks() {
         ArrayList<Task> tasks = new ArrayList<>();
         File file = new File(FILE_PATH);
@@ -61,6 +82,12 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Converts a task to a string in the file format.
+     *
+     * @param task The task to convert.
+     * @return The string representation of the task in the file format.
+     */
     private static String taskToFileFormat(Task task) {
         if (task instanceof Todo) {
             return "T | " + (task.isDone() ? "1" : "0") + " | " + task.getDescription();
@@ -74,6 +101,12 @@ public class Storage {
         return "";
     }
 
+    /**
+     * Parses a task from a string in the file format.
+     *
+     * @param line The string in the file format.
+     * @return The task parsed from the string.
+     */
     private static Task parseTaskFromFile(String line) {
         try {
             String[] parts = line.split(" \\| ");
