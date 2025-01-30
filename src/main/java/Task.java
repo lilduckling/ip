@@ -43,6 +43,10 @@ class Deadline extends Task {
         this.by = by;
     }
 
+    public String getBy() {
+        return by;
+    }
+
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";
@@ -58,6 +62,14 @@ class Event extends Task {
         this.from = from;
         this.to = to;
     }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public String getTo() {
+        return to;
+    }  
 
     @Override
     public String toString() {
