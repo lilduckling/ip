@@ -70,29 +70,37 @@ public class Avocado {
     private static void addDeadline(String input) throws AvocadoException {
         String[] parts = input.split(" /by ", 2);
         if (parts.length < 2) {
-            throw new AvocadoException("Oops! Deadline format should be: deadline <task> /by <date>");
+            throw new AvocadoException("Oops! Deadline format should be: deadline <task> /by yyyy-MM-dd");
         }
-        tasks.add(new Deadline(parts[0], parts[1]));
-        Storage.saveTasks(tasks);
-        System.out.println("____________________________________________________________");
-        System.out.println(" Got it. I've added this task:");
-        System.out.println("   " + tasks.get(tasks.size() - 1));
-        System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
-        System.out.println("____________________________________________________________");
+        try {
+            tasks.add(new Deadline(parts[0], parts[1]));
+            Storage.saveTasks(tasks);
+            System.out.println("____________________________________________________________");
+            System.out.println(" Got it. I've added this task:");
+            System.out.println("   " + tasks.get(tasks.size() - 1));
+            System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
+            System.out.println("____________________________________________________________");
+        } catch (Exception e) {
+            throw new AvocadoException("Oops! Invalid date format. Deadline should be in yyyy-MM-dd format.");
+        }
     }
 
     private static void addEvent(String input) throws AvocadoException {
         String[] parts = input.split(" /from | /to ", 3);
         if (parts.length < 3) {
-            throw new AvocadoException("Oops! Event format should be: event <task> /from <start> /to <end>");
+            throw new AvocadoException("Oops! Event format should be: event <task> /from yyyy-MM-dd HHmm /to yyyy-MM-dd HHmm");
         }
-        tasks.add(new Event(parts[0], parts[1], parts[2]));
-        Storage.saveTasks(tasks);
-        System.out.println("____________________________________________________________");
-        System.out.println(" Got it. I've added this task:");
-        System.out.println("   " + tasks.get(tasks.size() - 1));
-        System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
-        System.out.println("____________________________________________________________");
+        try {
+            tasks.add(new Event(parts[0], parts[1], parts[2]));
+            Storage.saveTasks(tasks);
+            System.out.println("____________________________________________________________");
+            System.out.println(" Got it. I've added this task:");
+            System.out.println("   " + tasks.get(tasks.size() - 1));
+            System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
+            System.out.println("____________________________________________________________");
+        } catch (Exception e) {
+            throw new AvocadoException("Oops! Invalid date format. Event dates should be in yyyy-MM-dd HHmm format.");
+        }
     }
 
     private static void deleteTask(String input) throws AvocadoException {
