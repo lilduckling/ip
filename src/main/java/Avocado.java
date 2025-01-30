@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class Avocado {
     private static final ArrayList<Task> tasks = new ArrayList<>(); 
 
@@ -58,6 +59,7 @@ public class Avocado {
             throw new AvocadoException("Oops! The description of a todo cannot be empty.");
         }
         tasks.add(new Todo(description));
+        Storage.saveTasks(tasks);
         System.out.println("____________________________________________________________");
         System.out.println(" Got it. I've added this task:");
         System.out.println("   " + tasks.get(tasks.size() - 1));
@@ -71,6 +73,7 @@ public class Avocado {
             throw new AvocadoException("Oops! Deadline format should be: deadline <task> /by <date>");
         }
         tasks.add(new Deadline(parts[0], parts[1]));
+        Storage.saveTasks(tasks);
         System.out.println("____________________________________________________________");
         System.out.println(" Got it. I've added this task:");
         System.out.println("   " + tasks.get(tasks.size() - 1));
@@ -84,6 +87,7 @@ public class Avocado {
             throw new AvocadoException("Oops! Event format should be: event <task> /from <start> /to <end>");
         }
         tasks.add(new Event(parts[0], parts[1], parts[2]));
+        Storage.saveTasks(tasks);
         System.out.println("____________________________________________________________");
         System.out.println(" Got it. I've added this task:");
         System.out.println("   " + tasks.get(tasks.size() - 1));
@@ -98,6 +102,7 @@ public class Avocado {
                 throw new AvocadoException("Oops! Task number out of range.");
             }
             Task removedTask = tasks.remove(taskIndex);
+            Storage.saveTasks(tasks);
             System.out.println("____________________________________________________________");
             System.out.println(" Noted. I've removed this task:");
             System.out.println("   " + removedTask);
@@ -128,6 +133,7 @@ public class Avocado {
                 throw new AvocadoException("Oops! Task number out of range.");
             }
             tasks.get(taskIndex).markAsDone();
+            Storage.saveTasks(tasks);
             System.out.println("____________________________________________________________");
             System.out.println(" Nice! I've marked this task as done:");
             System.out.println("   " + tasks.get(taskIndex));
