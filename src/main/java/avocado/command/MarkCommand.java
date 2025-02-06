@@ -30,9 +30,9 @@ public class MarkCommand extends Command {
      * @throws AvocadoException If an error occurs while marking the task as done.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws AvocadoException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws AvocadoException {
         tasks.markTaskAsDone(taskNumber);
         storage.saveTasks(tasks.getTasks());
-        ui.showMarkedAsDone(tasks.getTasks().get(taskNumber));
+        return ui.showMarkedAsDone(tasks.getTasks().get(taskNumber));
     }
 }

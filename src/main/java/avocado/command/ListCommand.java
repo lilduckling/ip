@@ -18,7 +18,7 @@ public class ListCommand extends Command {
      * @throws AvocadoException If an error occurs during the execution of the command.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws AvocadoException {
-        tasks.printTaskList();
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws AvocadoException {
+        return tasks.printTaskList();
     }
 }

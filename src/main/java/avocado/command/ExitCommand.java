@@ -20,8 +20,8 @@ public class ExitCommand extends Command {
      * @throws AvocadoException If an error occurs during the execution of the command.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws AvocadoException {
-        ui.showGoodbye();
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws AvocadoException {
+        return ui.showGoodbye();
     }
 
     /**
