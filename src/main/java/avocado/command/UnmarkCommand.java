@@ -32,10 +32,10 @@ public class UnmarkCommand extends Command {
      * @throws AvocadoException If an error occurs while unmarking the task.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws AvocadoException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws AvocadoException {
         tasks.markTaskAsNotDone(taskNumber);
         storage.saveTasks(tasks.getTasks());
-        ui.showMarkedAsUndone(tasks.getTask(taskNumber));
+        return ui.showMarkedAsUndone(tasks.getTask(taskNumber));
     }
     
 }

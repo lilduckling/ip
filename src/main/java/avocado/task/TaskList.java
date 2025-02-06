@@ -74,17 +74,30 @@ public class TaskList {
     /**
      * Prints the list of tasks.
      */
-    public void printTaskList() {
-        System.out.println("____________________________________________________________");
+    // public void printTaskList() {
+    //     System.out.println("____________________________________________________________");
+    //     if (tasks.isEmpty()) {
+    //         System.out.println(" No tasks available!");
+    //     } else {
+    //         System.out.println(" Here are the tasks in your list:");
+    //         for (int i = 0; i < tasks.size(); i++) {
+    //             System.out.println(" " + (i + 1) + ". " + tasks.get(i));
+    //         }
+    //     }
+    //     // System.out.println("____________________________________________________________");
+    // }
+
+    public String printTaskList() {
         if (tasks.isEmpty()) {
-            System.out.println(" No tasks available!");
+            return " No tasks available!";
         } else {
-            System.out.println(" Here are the tasks in your list:");
+            StringBuilder taskList = new StringBuilder();
+            taskList.append(" Here are the tasks in your list:\n");
             for (int i = 0; i < tasks.size(); i++) {
-                System.out.println(" " + (i + 1) + ". " + tasks.get(i));
+                taskList.append(" " + (i + 1) + ". " + tasks.get(i) + "\n");
             }
+            return taskList.toString();
         }
-        // System.out.println("____________________________________________________________");
     }
 
     /**
@@ -92,19 +105,35 @@ public class TaskList {
      *
      * @param keyword The keyword to search for.
      */
-    public void findTask(String keyword) {
-        System.out.println("____________________________________________________________");
-        System.out.println(" Here are the matching tasks in your list:");
+    // public void findTask(String keyword) {
+    //     System.out.println("____________________________________________________________");
+    //     System.out.println(" Here are the matching tasks in your list:");
+    //     int count = 0;
+    //     for (int i = 0; i < tasks.size(); i++) {
+    //         if (tasks.get(i).getDescription().contains(keyword)) {
+    //             System.out.println(" " + (i + 1) + ". " + tasks.get(i));
+    //             count++;
+    //         }
+    //     }
+    //     if (count == 0) {
+    //         System.out.println(" No matching tasks found!");
+    //     }
+    //     // System.out.println("____________________________________________________________");
+    // }
+
+    public String findTask(String keyword) {
+        StringBuilder matchingTasks = new StringBuilder();
         int count = 0;
         for (int i = 0; i < tasks.size(); i++) {
             if (tasks.get(i).getDescription().contains(keyword)) {
-                System.out.println(" " + (i + 1) + ". " + tasks.get(i));
+                matchingTasks.append(" " + (i + 1) + ". " + tasks.get(i) + "\n");
                 count++;
             }
         }
         if (count == 0) {
-            System.out.println(" No matching tasks found!");
+            return " No matching tasks found!";
+        } else {
+            return " Here are the matching tasks in your list:\n" + matchingTasks.toString();
         }
-        // System.out.println("____________________________________________________________");
     }
 }

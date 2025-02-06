@@ -50,6 +50,19 @@ public class Avocado {
             }
         }
     }
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parse(input);
+            return command.execute(tasks, ui, storage);
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
+    public String showWelcome() {
+        return ui.showWelcome();
+    }
+    
 
     /**
      * The main method for the Avocado chatbot.

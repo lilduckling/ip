@@ -20,7 +20,7 @@ public abstract class Command {
      * @throws AvocadoException If an error occurs during the execution of the command.
      */
 
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws AvocadoException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws AvocadoException;
 
     /**
      * Returns true if the command is an exit command.

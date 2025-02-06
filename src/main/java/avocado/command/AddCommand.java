@@ -31,10 +31,10 @@ public class AddCommand extends Command {
      * @throws AvocadoException If an error occurs while adding the task.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws AvocadoException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws AvocadoException {
         tasks.addTask(task);
         storage.saveTasks(tasks.getTasks());
-        ui.showTaskAdded(task, tasks);
+        return ui.showTaskAdded(task, tasks);
     }
 
     @Override

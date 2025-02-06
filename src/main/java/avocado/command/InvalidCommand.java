@@ -18,8 +18,8 @@ public class InvalidCommand extends Command {
      * @throws AvocadoException If an error occurs when executing the command.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws AvocadoException {
-        ui.showError("Oops! I don't understand this command.");
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws AvocadoException {
+        return ui.showError("Oops! I don't understand this command.");
     }
     
     /**

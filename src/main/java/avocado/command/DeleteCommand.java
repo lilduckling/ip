@@ -30,10 +30,10 @@ public class DeleteCommand extends Command {
      * @throws AvocadoException If an error occurs when deleting the task.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws AvocadoException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws AvocadoException {
         Task task = tasks.deleteTask(index);
         storage.saveTasks(tasks.getTasks());
-        ui.showTaskDeleted(task, tasks);
+        return ui.showTaskDeleted(task, tasks);
     }
     
 }
