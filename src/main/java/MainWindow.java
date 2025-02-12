@@ -52,10 +52,6 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = avo.getResponse(input);
-        // String alltext = avo.showWelcome();
-        // dialogContainer.getChildren().add(
-        //         DialogBox.getAvoDialog(alltext, avoImage)
-        // );
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getAvoDialog(response, avoImage)

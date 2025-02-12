@@ -45,7 +45,7 @@ public class Avocado {
                 ui.showLine();
                 Command command = Parser.parse(fullCommand);
                 assert command != null : "Command should not be null";
-                command.execute(tasks, ui, storage);
+                executeCommand(command);
                 isExit = command.isExit();
             } catch (Exception e) {
                 ui.showError(e.getMessage());
@@ -54,6 +54,11 @@ public class Avocado {
             }
         }
     }
+
+    private void executeCommand(Command command) throws Exception {
+        command.execute(tasks, ui, storage);
+    }
+
     public String getResponse(String input) {
         try {
             Command command = Parser.parse(input);

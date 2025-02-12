@@ -41,12 +41,11 @@ public class Storage {
         try {
             File file = new File(FILE_PATH);
             file.getParentFile().mkdirs(); // Ensure directory exists
-            FileWriter writer = new FileWriter(file);
-
-            for (Task task : tasks) {
-                writer.write(taskToFileFormat(task) + "\n");
+            try (FileWriter writer = new FileWriter(file)) {
+                for (Task task : tasks) {
+                    writer.write(taskToFileFormat(task) + "\n");
+                }
             }
-            writer.close();
         } catch (IOException e) {
             System.out.println("Error saving tasks to file: " + e.getMessage());
         }
