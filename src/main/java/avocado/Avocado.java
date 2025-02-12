@@ -26,6 +26,9 @@ public class Avocado {
         this.ui = new Ui();
         this.storage = new Storage();
         this.tasks = new TaskList(storage.loadTasks());
+
+        assert storage != null : "Storage should not be null";
+        assert tasks != null : "TaskList should not be null";
     }
 
     /**
@@ -41,6 +44,7 @@ public class Avocado {
                 String fullCommand = ui.readCommand();
                 ui.showLine();
                 Command command = Parser.parse(fullCommand);
+                assert command != null : "Command should not be null";
                 command.execute(tasks, ui, storage);
                 isExit = command.isExit();
             } catch (Exception e) {

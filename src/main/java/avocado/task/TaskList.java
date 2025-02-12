@@ -13,6 +13,7 @@ public class TaskList {
      */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
+        assert tasks != null : "Tasks should not be null";
     }
 
     /**
@@ -22,6 +23,7 @@ public class TaskList {
      */
     public void addTask(Task task) {
         tasks.add(task);
+        assert tasks.contains(task) : "Task should be added to the list of tasks";
     }   
 
     /**
@@ -31,7 +33,9 @@ public class TaskList {
      * @return The task that was deleted.
      */
     public Task deleteTask(int index) {
-        return tasks.remove(index);
+        Task task = tasks.remove(index);
+        assert !tasks.contains(tasks.get(index)) : "Task should be deleted from the list of tasks";
+        return task;
     }   
 
     /**
@@ -41,6 +45,7 @@ public class TaskList {
      */
     public void markTaskAsDone(int index) {
         tasks.get(index).markAsDone();
+        assert tasks.get(index).isDone() : "Task should be marked as done";
     }
 
     /**
@@ -50,6 +55,7 @@ public class TaskList {
      */
     public void markTaskAsNotDone(int index) {
         tasks.get(index).markAsNotDone();
+        assert !tasks.get(index).isDone() : "Task should be marked as not done";
     }
 
     /**
