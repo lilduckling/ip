@@ -21,41 +21,57 @@ public class Parser {
         } else if (fullCommand.equalsIgnoreCase("list")) {
             return new ListCommand();
         } else if (fullCommand.startsWith("mark ")) {
-            return new MarkCommand(Integer.parseInt(fullCommand.split(" ")[1]) - 1);
+            return new MarkCommand(parseIndex(fullCommand));
         } else if (fullCommand.startsWith("unmark ")) {
-            return new UnmarkCommand(Integer.parseInt(fullCommand.split(" ")[1]) - 1);
+            return new UnmarkCommand(parseIndex(fullCommand));
         } else if (fullCommand.startsWith("delete ")) {
-            return new DeleteCommand(Integer.parseInt(fullCommand.split(" ")[1]) - 1);
+            return new DeleteCommand(parseIndex(fullCommand));
         } else if (fullCommand.startsWith("find ")) {
             return new FindCommand(fullCommand.substring(5).trim());
         } else if (fullCommand.startsWith("todo ")) {
-            String description = fullCommand.substring(5).trim();
-            if (description.isEmpty()) {
-                throw new AvocadoException("Oops! The description of a todo cannot be empty.");
-            }
-            return new AddCommand(new Todo(description));
+            return parseTodoCommand(fullCommand);
         } else if (fullCommand.startsWith("deadline ")) {
-            String[] parts = fullCommand.split(" /by ", 2);
-            if (parts.length < 2) {
-                throw new AvocadoException("Oops! Deadline format should be: deadline <task> /by yyyy-MM-dd");
-            }
-            try {        
-                return new AddCommand(new Deadline(parts[0].substring(9).trim(), parts[1]));
-            } catch (Exception e) {
-                throw new AvocadoException("Oops! Date format should be: yyyy-MM-dd");
-            }
+            return parseDeadlineCommand(fullCommand);
         } else if (fullCommand.startsWith("event ")) {
-            String[] parts = fullCommand.split(" /from | /to ", 3);
-            if (parts.length < 3) {
-                throw new AvocadoException("Oops! Event format should be: event <task> /from yyyy-MM-dd HHmm /to yyyy-MM-dd HHmm");
-            }
-            try {
-                return new AddCommand(new Event(parts[0].substring(6).trim(), parts[1], parts[2]));
-            } catch (Exception e) {
-                throw new AvocadoException("Oops! Date format should be: yyyy-MM-dd HHmm");
-            }
+            return parseEventCommand(fullCommand);
         } else {
             throw new AvocadoException("Oops! I don't understand this command.");
+        }
+    }
+
+    private static int parseIndex(String fullCommand) {
+        return Integer.parseInt(fullCommand.split(" ")[1]) - 1;
+    }
+
+    private static Command parseTodoCommand(String fullCommand) throws AvocadoException {
+        String description = fullCommand.substring(5).trim();
+        if (description.isEmpty()) {
+            throw new AvocadoException("Oops! The description of a todo cannot be empty.");
+        }
+        return new AddCommand(new Todo(description));
+    }
+
+    private static Command parseDeadlineCommand(String fullCommand) throws AvocadoException {
+        String[] parts = fullCommand.split(" /by ", 2);
+        if (parts.length < 2) {
+            throw new AvocadoException("Oops! Deadline format should be: deadline <task> /by yyyy-MM-dd");
+        }
+        try {
+            return new AddCommand(new Deadline(parts[0].substring(9).trim(), parts[1]));
+        } catch (Exception e) {
+            throw new AvocadoException("Oops! Date format should be: yyyy-MM-dd");
+        }
+    }
+
+    private static Command parseEventCommand(String fullCommand) throws AvocadoException {
+        String[] parts = fullCommand.split(" /from | /to ", 3);
+        if (parts.length < 3) {
+            throw new AvocadoException("Oops! Event format should be: event <task> /from yyyy-MM-dd HHmm /to yyyy-MM-dd HHmm");
+        }
+        try {
+            return new AddCommand(new Event(parts[0].substring(6).trim(), parts[1], parts[2]));
+        } catch (Exception e) {
+            throw new AvocadoException("Oops! Date format should be: yyyy-MM-dd HHmm");
         }
     }
 }
