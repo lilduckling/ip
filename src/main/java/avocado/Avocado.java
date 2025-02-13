@@ -5,6 +5,7 @@ import avocado.parser.Parser;
 import avocado.storage.Storage;
 import avocado.task.TaskList;
 import avocado.ui.Ui;
+import java.util.ArrayList;
 
 /**
  * The main class for the Avocado chatbot.
@@ -26,6 +27,8 @@ public class Avocado {
         this.ui = new Ui();
         this.storage = new Storage();
         this.tasks = new TaskList(storage.loadTasks());
+        ArrayList<String> tags = storage.loadTags();
+        // Initialize tags in TaskList if needed
 
         assert storage != null : "Storage should not be null";
         assert tasks != null : "TaskList should not be null";
@@ -56,7 +59,9 @@ public class Avocado {
     }
 
     private void executeCommand(Command command) throws Exception {
-        command.execute(tasks, ui, storage);
+        String result = command.execute(tasks, ui, storage);
+        // Save tags after executing a command that might modify them
+        storage.saveTags(new ArrayList<>(tasks.getTags()));
     }
 
     public String getResponse(String input) {

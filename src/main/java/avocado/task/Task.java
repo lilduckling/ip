@@ -1,11 +1,15 @@
 package avocado.task;
 
+import java.util.Set;
+import java.util.HashSet;
+
 /**
  * Represents a task in the task list.
  */
 public class Task {
     protected  String description;
     protected  boolean isDone;
+    protected Set<String> tags;
 
     /**
      * Constructor for Task.
@@ -14,6 +18,7 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        this.tags = new HashSet<>();
     }
 
     /**
@@ -22,6 +27,28 @@ public class Task {
      */
     public String getDescription() {
         return description;
+    }
+
+    /**
+     * Add a tag to the task.
+     * 
+     * @param tag
+     */
+    public void addTag(String tag) {
+        tags.add(tag);
+    }
+
+    /**
+     * Remove a tag from the task.
+     * 
+     * @param tag
+     */
+    public void removeTag(String tag) {
+        tags.remove(tag);
+    }
+
+    public String getTagsAsString() {
+        return tags.isEmpty() ? "" : " " + tags;
     }
 
     /**
@@ -60,7 +87,7 @@ public class Task {
      */
     @Override
     public String toString() {
-        return "[" + getStatusIcon() + "] " + description;
+        return "[" + getStatusIcon() + "] " + description + getTagsAsString();
     }
 }
 

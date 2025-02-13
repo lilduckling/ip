@@ -34,6 +34,12 @@ public class Parser {
             return parseDeadlineCommand(fullCommand);
         } else if (fullCommand.startsWith("event ")) {
             return parseEventCommand(fullCommand);
+        } else if (fullCommand.startsWith("tag ")) {
+            String[] parts = fullCommand.split(" ", 3);
+            return new AddTagCommand(parseIndex(parts[1]), parts[2]);
+        } else if (fullCommand.startsWith("untag ")) {
+            String[] parts = fullCommand.split(" ", 3);
+            return new RemoveTagCommand(parseIndex(parts[1]), parts[2]);
         } else {
             throw new AvocadoException("Oops! I don't understand this command.");
         }

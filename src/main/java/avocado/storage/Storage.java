@@ -82,6 +82,52 @@ public class Storage {
     }
 
     /**
+     * Saves the tags to the file.
+     *
+     * @param tags The list of tags to save.
+     */
+    public static void saveTags(ArrayList<String> tags) {
+        try {
+            File file = new File("./data/tags.txt");
+            file.getParentFile().mkdirs(); // Ensure directory exists
+            try (FileWriter writer = new FileWriter(file)) {
+                for (String tag : tags) {
+                    writer.write(tag + "\n");
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error saving tags to file: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Loads the tags from the file.
+     *
+     * @return The list of tags loaded from the file.
+     */
+    public static ArrayList<String> loadTags() {
+        ArrayList<String> tags = new ArrayList<>();
+        File file = new File("./data/tags.txt");
+
+        if (!file.exists()) {
+            return tags; // Return empty list if no previous data
+        }
+
+        try (Scanner scanner = new Scanner(file)) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                tags.add(line);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("No saved tags found.");
+        } catch (Exception e) {
+            System.out.println("Error loading tags: " + e.getMessage());
+        }
+
+        return tags;
+    }
+
+    /**
      * Converts a task to a string in the file format.
      *
      * @param task The task to convert.
