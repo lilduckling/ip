@@ -1,12 +1,18 @@
 package avocado.task;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.List;
+import java.util.HashMap;
+import java.util.Set;
 
 /**
  * Represents a list of tasks.
  */
 public class TaskList {
     private final ArrayList<Task> tasks;    
+    private final Map<String, List<Task>> tagMap;
+
 
     /**
      * Constructs a TaskList object with an empty list of tasks.
@@ -14,6 +20,7 @@ public class TaskList {
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
         assert tasks != null : "Tasks should not be null";
+        this.tagMap = new HashMap<>();
     }
 
     /**
@@ -75,6 +82,38 @@ public class TaskList {
      */
     public Task getTask(int index) {
         return tasks.get(index);
+    }
+
+    /**
+     * Tags a task with a specified tag.
+     *
+     * @param taskIndex The index of the task to tag.
+     * @param tag The tag to add to the task.
+     * @return A message indicating that the task has been tagged.
+     */
+    public String tagTask(int taskIndex, String tag) {
+        Task task = tasks.get(taskIndex);
+        task.addTag(tag);
+
+        tagMap.putIfAbsent(tag, new ArrayList<>());
+        tagMap.get(tag).add(task);
+        return "Tagged task: " + task + " with tag: " + tag;
+    }
+
+    /**
+     * Deletes a tag from a task.
+     *
+     * @param taskIndex The index of the task to untag.
+     * @param tag The tag to remove from the task.
+     * @return A message indicating that the tag has been removed from the task.
+     */
+    public String untagTask(int taskIndex, String tag) {
+        Task task = tasks.get(taskIndex);
+        task.removeTag(tag);
+        
+
+        tagMap.get(tag).remove(task);
+        return "Removed tag: " + tag + " from task: " + task;
     }
 
     /**
@@ -141,5 +180,9 @@ public class TaskList {
         } else {
             return " Here are the matching tasks in your list:\n" + matchingTasks.toString();
         }
+    }
+
+    public Set<String> getTags() {
+        return tagMap.keySet();
     }
 }
