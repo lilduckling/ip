@@ -1,9 +1,9 @@
 package avocado.task;
 
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.List;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -133,19 +133,7 @@ public class TaskList {
     /**
      * Prints the list of tasks.
      */
-    // public void printTaskList() {
-    //     System.out.println("____________________________________________________________");
-    //     if (tasks.isEmpty()) {
-    //         System.out.println(" No tasks available!");
-    //     } else {
-    //         System.out.println(" Here are the tasks in your list:");
-    //         for (int i = 0; i < tasks.size(); i++) {
-    //             System.out.println(" " + (i + 1) + ". " + tasks.get(i));
-    //         }
-    //     }
-    //     // System.out.println("____________________________________________________________");
-    // }
-
+    
     public String printTaskList() {
         if (tasks.isEmpty()) {
             return " No tasks available!";
@@ -164,21 +152,6 @@ public class TaskList {
      *
      * @param keyword The keyword to search for.
      */
-    // public void findTask(String keyword) {
-    //     System.out.println("____________________________________________________________");
-    //     System.out.println(" Here are the matching tasks in your list:");
-    //     int count = 0;
-    //     for (int i = 0; i < tasks.size(); i++) {
-    //         if (tasks.get(i).getDescription().contains(keyword)) {
-    //             System.out.println(" " + (i + 1) + ". " + tasks.get(i));
-    //             count++;
-    //         }
-    //     }
-    //     if (count == 0) {
-    //         System.out.println(" No matching tasks found!");
-    //     }
-    //     // System.out.println("____________________________________________________________");
-    // }
 
     public String findTask(String keyword) {
         StringBuilder matchingTasks = new StringBuilder();
@@ -196,6 +169,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Gets the list of tasks with the specified tag.
+     *
+     * @param tag The tag to search for.
+     * @return The list of tasks with the specified tag.
+     */
     public Set<String> getTags() {
         return tagMap.keySet();
     }
