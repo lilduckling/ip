@@ -60,7 +60,7 @@ jar {
 shadowJar {
     archiveBaseName.set("avocado")
     archiveClassifier.set("")  // Removes the "-all" suffix from the filename
-    archiveVersion.set("1.0.0")
+    archiveVersion.set("2.0.0")
 
     manifest {
         attributes 'Main-Class': application.mainClass.get()

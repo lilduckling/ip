@@ -16,11 +16,11 @@ Why the name Avocado? I don't know, how about you tell me then.
 
 ### Prerequisites
 
-- JDK 17
-- Intellij IDEA (latest version recommended)
+- Java 17
 
 ### How to run
 
+#### Through cloning repo
 To run the application, follow these simple steps:
 
 - Clone the Repository: First, clone this repository to your local machine:
@@ -30,6 +30,13 @@ git clone https://github.com/lilduckling/ip
 ```
 
 - Run the application: ./gradlew run
+
+#### Through release
+- Download release v2.0: https://github.com/lilduckling/ip/releases
+- Use your terminal, run:
+```
+java -jar avocado-2.0.0.jar 
+```
 
 ## Usage
 
