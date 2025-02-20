@@ -1,3 +1,5 @@
+//Solution below adapted from https://se-education.org/guides/tutorials/javaFx.html
+
 import javafx.application.Application;
 // import static your.package.Constants.*; // Adjust the package name accordingly
 

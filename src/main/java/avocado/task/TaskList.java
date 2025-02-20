@@ -50,9 +50,13 @@ public class TaskList {
      *
      * @param index The index of the task to be marked as done.
      */
-    public void markTaskAsDone(int index) {
+    public boolean markTaskAsDone(int index) {
+        if (index < 0 || index >= tasks.size()) {
+            return false;
+        }
         tasks.get(index).markAsDone();
         assert tasks.get(index).isDone() : "Task should be marked as done";
+        return true;
     }
 
     /**
@@ -60,9 +64,13 @@ public class TaskList {
      *
      * @param index The index of the task to be marked as not done.
      */
-    public void markTaskAsNotDone(int index) {
+    public boolean markTaskAsNotDone(int index) {
+        if (index < 0 || index >= tasks.size()) {
+            return false;
+        }
         tasks.get(index).markAsNotDone();
         assert !tasks.get(index).isDone() : "Task should be marked as not done";
+        return true;
     }
 
     /**
@@ -109,6 +117,12 @@ public class TaskList {
      */
     public String untagTask(int taskIndex, String tag) {
         Task task = tasks.get(taskIndex);
+
+        // Check if tag exists in task
+        if (!task.hasTag(tag)) {
+            return "Tag not found in task!";
+        }
+
         task.removeTag(tag);
         
 

@@ -36,18 +36,33 @@ public class Parser {
             return parseEventCommand(fullCommand);
         } else if (fullCommand.startsWith("tag ")) {
             String[] parts = fullCommand.split(" ", 3);
-            return new AddTagCommand(parseIndex(parts[1]), parts[2]);
+            return new AddTagCommand(parseIndex(fullCommand), parts[2]);
         } else if (fullCommand.startsWith("untag ")) {
             String[] parts = fullCommand.split(" ", 3);
-            return new RemoveTagCommand(parseIndex(parts[1]), parts[2]);
+            return new RemoveTagCommand(parseIndex(fullCommand), parts[2]);
         } else {
             throw new AvocadoException("Oops! I don't understand this command.");
         }
     }
 
+    /**
+     * Parses the index from the full command.
+     *
+     * @param fullCommand The full command entered by the user.
+     * @return The index parsed from the full command.
+     */
+
     private static int parseIndex(String fullCommand) {
         return Integer.parseInt(fullCommand.split(" ")[1]) - 1;
     }
+
+    /**
+     * Parses the todo command from the full command.
+     * 
+     * @param fullCommand The full command entered by the user.
+     * @return The todo command parsed from the full command.
+     * @throws AvocadoException If an error occurs during the parsing of the todo command.
+     */
 
     private static Command parseTodoCommand(String fullCommand) throws AvocadoException {
         String description = fullCommand.substring(5).trim();
@@ -56,6 +71,14 @@ public class Parser {
         }
         return new AddCommand(new Todo(description));
     }
+
+    /**
+     * Parses the deadline command from the full command.
+     * 
+     * @param fullCommand The full command entered by the user.
+     * @return The deadline command parsed from the full command.
+     * @throws AvocadoException If an error occurs during the parsing of the deadline command.
+     */
 
     private static Command parseDeadlineCommand(String fullCommand) throws AvocadoException {
         String[] parts = fullCommand.split(" /by ", 2);
@@ -68,6 +91,14 @@ public class Parser {
             throw new AvocadoException("Oops! Date format should be: yyyy-MM-dd");
         }
     }
+
+    /**
+     * Parses the event command from the full command.
+     * 
+     * @param fullCommand The full command entered by the user.
+     * @return The event command parsed from the full command.
+     * @throws AvocadoException If an error occurs during the parsing of the event command.
+     */
 
     private static Command parseEventCommand(String fullCommand) throws AvocadoException {
         String[] parts = fullCommand.split(" /from | /to ", 3);

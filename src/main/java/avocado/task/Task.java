@@ -47,6 +47,17 @@ public class Task {
         tags.remove(tag);
     }
 
+    /**
+     * Check if the task has a tag.
+     * 
+     * @param tag
+     * @return
+     */
+
+    public boolean hasTag(String tag) {
+        return tags.contains(tag);
+    }
+
     public String getTagsAsString() {
         return tags.isEmpty() ? "" : " " + tags;
     }

@@ -31,7 +31,10 @@ public class MarkCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws AvocadoException {
-        tasks.markTaskAsDone(taskNumber);
+        boolean check = tasks.markTaskAsDone(taskNumber);
+        if (!check) {
+            throw new AvocadoException("There is no such task.");
+        }
         storage.saveTasks(tasks.getTasks());
         return ui.showMarkedAsDone(tasks.getTasks().get(taskNumber));
     }

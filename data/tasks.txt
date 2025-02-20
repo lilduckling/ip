@@ -3,3 +3,4 @@ T | 0 | sleep
 T | 0 | cry
 T | 0 | study
 T | 0 | eat
+D | 1 | CS2101S CA1 | 2025-03-01

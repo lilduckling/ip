@@ -37,6 +37,12 @@ public class AddCommand extends Command {
         return ui.showTaskAdded(task, tasks);
     }
 
+    /**
+     * Returns false as this is not an exit command.
+     *
+     * @return false
+     */
+
     @Override
     public boolean isExit() {
         return false;

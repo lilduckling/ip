@@ -33,7 +33,10 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws AvocadoException {
-        tasks.markTaskAsNotDone(taskNumber);
+        boolean check = tasks.markTaskAsNotDone(taskNumber);
+        if (!check) {
+            throw new AvocadoException("There is no such task.");
+        }
         storage.saveTasks(tasks.getTasks());
         return ui.showMarkedAsUndone(tasks.getTask(taskNumber));
     }
