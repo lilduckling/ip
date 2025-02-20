@@ -145,6 +145,9 @@ bye
 
 Tasks are automatically saved to a file (`./data/tasks.txt`) when the application exits and loaded from the file when the application starts.
 
+## Sample UI
+![alt text](https://lilduckling.github.io/ip/Ui.png)
+
 ## Contributing
 
 If you would like to contribute to this project, please fork the repository and submit a pull request.
