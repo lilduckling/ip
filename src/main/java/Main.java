@@ -2,20 +2,24 @@
 
 import java.io.IOException;
 
+import avocado.Avocado;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import avocado.Avocado;
-
 /**
  * A GUI for Duke using FXML.
  */
 public class Main extends Application {
-
     private Avocado avo = new Avocado("data/tasks.txt");
+
+    /**
+     * Starts the GUI application.
+     *
+     * @param stage The stage to start the GUI application.
+     */
 
     @Override
     public void start(Stage stage) {

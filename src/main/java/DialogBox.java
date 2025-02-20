@@ -48,9 +48,25 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Returns a DialogBox containing the user's dialog.
+     *
+     * @param text The user's dialog.
+     * @param img The user's display picture.
+     * @return A DialogBox containing the user's dialog.
+     */
+
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
+
+    /**
+     * Returns a DialogBox containing Avo's dialog.
+     *
+     * @param text Avo's dialog.
+     * @param img Avo's display picture.
+     * @return A DialogBox containing Avo's dialog.
+     */
 
     public static DialogBox getAvoDialog(String text, Image img) {
         var db = new DialogBox(text, img);

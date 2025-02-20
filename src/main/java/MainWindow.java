@@ -1,5 +1,6 @@
 //Solution below adapted from https://se-education.org/guides/tutorials/javaFx.html
 
+import avocado.Avocado;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -7,8 +8,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-
-import avocado.Avocado;
 /**
  * Controller for the main GUI.
  */
@@ -27,6 +26,9 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/gira.jpg"));
     private Image avoImage = new Image(this.getClass().getResourceAsStream("/images/avo.jpg"));
 
+    /**
+     * Initializes the main window.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
